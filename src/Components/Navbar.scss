@@ -1,23 +1,24 @@
 @import "~@evive/ui-kit/src/statics/styles/main";
 
 .navbar {
-    background-color: rgba($background-important-light-default, 0.88);
-    height: 5rem;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    border-bottom: 1px solid $stroke-base-light;
-    z-index: 5;
+  &__container{
+      background-color: rgba($background-important-light-default, 0.88);
+      height: 5rem;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      border-bottom: 1px solid $stroke-base-light;
+      z-index: 5;
+  }
 
-  &__content {
+  &__content-container {
     align-items: center;
     flex-direction: row;
-
-    &__header {
-        flex: 1;
-      }
-
   }
+
+    &__content__header {
+      flex: 1;
+    }
 
 }

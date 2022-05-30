@@ -13,36 +13,45 @@ import {
 } from "@evive/ui-kit";
 import Navbar from "../Components/Navbar";
 import "./Home.scss";
-import {
-  dependentsDescription,
-  navigationList,
-  radioBtnDescription,
-  users,
-} from "../Data/userData";
+import userData from "../Data/userData";
 import Footer from "../Components/Footer";
 
+const NAVIGATION_PANNEL_STATICS = {
+  SELECTED_PANNEL:"opt1"
+}
+
+const EDIT_BUTTON_STATICS = {
+  ICON_NAME: "fa-regular fa-pen-to-square",
+  BUTTON_TEXT: "Edit Dependents",
+};
+
+const DEPENDENT_DETAILS_STATICS = {
+  ICON_NAME:"fa-solid fa-arrow-right",
+  RADIO_GROUP_ID: "DefaultRadioGroup",
+};
+
 const styles = {
-  container:"home",
-  dependents: "home__dependent-details",
-  navigationPannel: "home__navigation-lists",
-  headerContainer: {
+  container:"home__container",
+  navigationPannel: "home__navigation-pannel",
+  header: {
+    container:"home__header-container",
     header: "home__header",
     headerDetails: "home__header-details",
     body: "home__header__text-body",
   },
 
   dependentDetails: {
-    heading: "home__dependent-details__header",
+    container:"home__dependent-details-container",
+    header: "home__dependent-details__header",
     radioBtnGroup: "home__dependent-details__radio-btn-group",
-    radioBtnDescription:
-      "home__dependent-details__radio-btn-group__description",
+    radioBtnDescription: "home__dependent-details__radio-btn-group__description",
     submitBtn: "home__dependent-details__submit-btn",
   },
 };
 
 const Home = () => {
-  const [data, setData] = useState({});
-  const [navigationPannel, setNavigationPannel] = useState({});
+  // const [data, setData] = useState({});
+  // const [navigationPannel, setNavigationPannel] = useState({});
 
   //  const onChangeHandler = useCallback(()=>data.filter())
   //  const onClickHandler = useCallback(()=>data.filter())
@@ -51,80 +60,82 @@ const Home = () => {
     return (
       <TabNavigationBar
         className={styles.navigationPannel}
-        navList={navigationList}
+        navList={userData.navigationList}
         // onClickHandler={function noRefCheck() {}}
-        selectedId="opt1"
+        selectedId={NAVIGATION_PANNEL_STATICS.SELECTED_PANNEL}//by default this will come from useState()/props;
       />
     );
   };
 
   const getHeaderDetails = () => {
     return (
-      <div className={styles.headerContainer.header}>
-        <div className={styles.headerContainer.headerDetails}>
-          <TextHeader size={SIZE.XL}>{dependentsDescription.header}</TextHeader>
-          <TextBody className={styles.headerContainer.body}>
-            {dependentsDescription.text}
+      <div className={styles.header.container}>
+        <div className={styles.header.headerDetails}>
+          <TextHeader size={SIZE.XL}>{userData.dependentsDescription.header}</TextHeader>
+          <TextBody className={styles.header.body}>
+            {userData.dependentsDescription.text}
           </TextBody>
         </div>
         <Button
           iconLocation={ALIGN.LEFT}
-          iconName="edit"
+          iconName={EDIT_BUTTON_STATICS.ICON_NAME}
           type={BUTTON_TYPE.SECONDARY}
         >
-          Edit Dependents
+          {EDIT_BUTTON_STATICS.BUTTON_TEXT}
         </Button>
       </div>
     );
   };
 
-  const getUsers = (user: { id: Key; firstName: string; lastName: string }) => {
+  const getUsers = (user: { id: Key; firstName: string; lastName: string },key:Number) => {
     return (
       <div key={user.id}>
-        <TextHeader className={styles.dependentDetails.heading} size={SIZE.M}>
-          {user.firstName} {user.lastName}
+        <TextHeader className={styles.dependentDetails.header} size={SIZE.M}>
+          {`${user.firstName} ${user.lastName}`}
         </TextHeader>
-        <div className="">
+        <div>
           <RadioGroup
-            id="DefaultRadioGroup"
+            id={DEPENDENT_DETAILS_STATICS.RADIO_GROUP_ID}
             className={styles.dependentDetails.radioBtnGroup}
             // onChange={function noRefCheck() {}}
           >
             <RadioButton
-              id="default_option_1"
+              id={`${userData.radioBtnDescription.low.id}-${key}`}
               description={
                 <div className={styles.dependentDetails.radioBtnDescription}>
-                  <span>{radioBtnDescription.low.doctorVisit}</span>
-                  <span>{radioBtnDescription.low.prescription}</span>
-                  <span>{radioBtnDescription.low.ctScan}</span>
+                  <span>{userData.radioBtnDescription.low.doctorVisit}</span>
+                  <span>{userData.radioBtnDescription.low.prescription}</span>
+                  <span>{userData.radioBtnDescription.low.ctScan}</span>
                 </div>
               }
             >
-              Low
+              {userData.radioBtnDescription.low.buttonText}
             </RadioButton>
             <RadioButton
-              id="default_option_2"
+              id={`${userData.radioBtnDescription.medium.id}-${key}`}
               description={
                 <div className={styles.dependentDetails.radioBtnDescription}>
-                  <span>{radioBtnDescription.medium.doctorVisit}</span>
-                  <span>{radioBtnDescription.medium.prescription}</span>
-                  <span>{radioBtnDescription.medium.ctScan}</span>
+                  <span>{userData.radioBtnDescription.medium.doctorVisit}</span>
+                  <span>
+                    {userData.radioBtnDescription.medium.prescription}
+                  </span>
+                  <span>{userData.radioBtnDescription.medium.ctScan}</span>
                 </div>
               }
             >
-              Medium
+              {userData.radioBtnDescription.medium.buttonText}
             </RadioButton>
             <RadioButton
-              id="default_option_3"
+              id={`${userData.radioBtnDescription.high.id}-${key}`}
               description={
                 <div className={styles.dependentDetails.radioBtnDescription}>
-                  <span>{radioBtnDescription.high.doctorVisit}</span>
-                  <span>{radioBtnDescription.high.prescription}</span>
-                  <span>{radioBtnDescription.high.ctScan}</span>
+                  <span>{userData.radioBtnDescription.high.doctorVisit}</span>
+                  <span>{userData.radioBtnDescription.high.prescription}</span>
+                  <span>{userData.radioBtnDescription.high.ctScan}</span>
                 </div>
               }
             >
-              High
+              {userData.radioBtnDescription.high.buttonText}
             </RadioButton>
           </RadioGroup>
         </div>
@@ -134,11 +145,11 @@ const Home = () => {
 
   const getDepedentsDetails = () => {
     return (
-      <div className={styles.dependents}>
-        {users.map(getUsers)}
+      <div className={styles.dependentDetails.container}>
+        {userData.userList.map(getUsers)}
         <Button
           disabled
-          iconName=" fa-arrow-right"
+          iconName={DEPENDENT_DETAILS_STATICS.ICON_NAME}
           className={styles.dependentDetails.submitBtn}
         >
           Save and Continue

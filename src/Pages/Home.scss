@@ -1,23 +1,29 @@
 @import "~@evive/ui-kit/src/statics/styles/main";
 
 .home{
-      background-color: $background-surface-default;
+  &__container{
+    background-color: $background-surface-default;
+  }
 
-
-  &__navigation-lists{
+  &__navigation-pannel{
     margin-top: 10rem;
   }
 
   &__header{
-    margin-top: 2rem;
-    display: flex;
-    justify-content: space-between;
+
+    &-container{
+      margin-top: 2rem;
+      display: flex;
+    }
 
     &-details{
+      display: flex;
+      flex-direction: column;
       flex: 1;
-      max-width: 42rem;
+      padding-right: 42rem;
+      // max-width: 42rem;
     }
-    
+
     &__text-body{
       margin-top: 1rem;
     }
@@ -26,7 +32,9 @@
   &__dependent-details{
 
     // border: 2px solid red;
-    margin-top: 1rem;
+    &-container{
+      margin-top: 1rem;
+    }
 
     &__header{
       margin-top: 2rem;

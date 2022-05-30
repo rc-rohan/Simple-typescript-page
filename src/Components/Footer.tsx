@@ -1,14 +1,16 @@
 import { AnchorButton, PageLayout, SIZE, TextBody } from "@evive/ui-kit";
 import { Key } from "react";
-import { footer } from "../Data/userData";
+import userData from "../Data/userData";
 import "./Footer.scss";
 
 const styles = {
-  container: "footer",
+  container: "footer__container",
   contentContainer: "footer__content-container",
   disclaimerText: "footer__disclaimer-text",
-  navigationLinks: "footer__navigation-links",
-  anchorBtn: "footer__navigation-links__anchor-btn",
+  navigationLinks:{
+    container: "footer__navigation-links-container",
+    anchorBtn: "footer__navigation-links__anchor-btn",
+  },
   anchorSeperator: "footer__navigation-links__anchor-btn--seperator",
 };
 
@@ -22,7 +24,7 @@ const Footer = () => {
       <AnchorButton
         key={linkItemData.id}
         href={linkItemData.url}
-        className={styles.anchorBtn}
+        className={styles.navigationLinks.anchorBtn}
       >
         {linkItemData.displayText}
       </AnchorButton>
@@ -31,16 +33,16 @@ const Footer = () => {
   );
 
   const getFooterLinks = () => (
-    <div className={styles.navigationLinks}>
-      {footer.links?.map(getLinkDetails)}
-      <TextBody size={SIZE.XS}>&#xA9; {footer.copyrightText}</TextBody>
+    <div className={styles.navigationLinks.container}>
+      {userData.footer.links?.map(getLinkDetails)}
+      <TextBody size={SIZE.XS}>&#xA9; {userData.footer.copyrightText}</TextBody>
     </div>
   );
 
   const getDisclaimer = () => (
     <div className={styles.container}>
       <TextBody className={styles.disclaimerText} size={SIZE.XS}>
-        {footer.disclaimerText}
+        {userData.footer.disclaimerText}
       </TextBody>
     </div>
   );

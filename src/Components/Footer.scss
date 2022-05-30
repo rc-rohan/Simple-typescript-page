@@ -1,28 +1,30 @@
 @import "~@evive/ui-kit/src/statics/styles/main";
 
 .footer{
-  margin-top: 3.2rem;
+  &__container{
+    margin-top: 3.2rem;
+  }
 
   &__content-container{
     display: flex;
-    justify-content:center ;
+    // justify-content:center ;
     align-items: center;
     flex-direction: column;
   }
 
-  &__navigation-links{
+  &__navigation-links-container{
     display: flex;
     align-items: center;
     margin: 1.4rem 0;
+  }
 
-    &__anchor-btn{
-      &--seperator{
-        color:$text-base;
-        font-size: .6rem;
-        margin: 0 2rem;
-
-      }
+  &__navigation-links__anchor-btn {
+    &--seperator {
+      color: $text-base;
+      font-size: .6rem;
+      margin: 0 2rem;
 
     }
   }
+
 }

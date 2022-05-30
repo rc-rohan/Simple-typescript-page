@@ -1,36 +1,40 @@
-import { Button, BUTTON_TYPE, PageLayout, SIZE, TextHeader } from "@evive/ui-kit"
-import './Navbar.scss'
+import {
+  Button,
+  BUTTON_TYPE,
+  PageLayout,
+  SIZE,
+  TextHeader,
+} from "@evive/ui-kit";
+import userData from '../Data/userData'
+import "./Navbar.scss";
+
+
 
 const styles = {
-  container:"navbar",
-  containerContent:"navbar__content",
-  contents:{
-    headerText:"navbar__content__header",
-    logoutBtn:"navbar__content__logoutBtn",
-  }
-}
+  container: "navbar__container",
+  containerContent: "navbar__content-container",
+  content: {
+    headerText: "navbar__content__header",
+    logoutBtn: "navbar__content__logoutBtn",
+  },
+};
 
-
-const Navbar = () =>{
-
+const Navbar = () => {
   return (
     <div className={styles.container}>
       <PageLayout contentClassName={styles.containerContent}>
-        <TextHeader
-          size={SIZE.M}
-          className={styles.contents.headerText}
-        >
-          Medical Plan
+        <TextHeader size={SIZE.M} className={styles.content.headerText}>
+          {userData.navbar.headerTitle}
         </TextHeader>
         <Button
-          className={styles.contents.logoutBtn}
+          className={styles.content.logoutBtn}
           type={BUTTON_TYPE.TERTIARY}
         >
-          Log out
+          {userData.navbar.logoutText}
         </Button>
       </PageLayout>
     </div>
-  )
-}
+  );
+};
 
 export default Navbar;
