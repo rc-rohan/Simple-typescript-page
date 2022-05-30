@@ -19,12 +19,12 @@
   }
 
   &__navigation-links__anchor-btn {
-    &--seperator {
-      color: $text-base;
-      font-size: .6rem;
-      margin: 0 2rem;
-
-    }
+  }
+  
+  &__anchor-btn--seperator {
+    color: $text-base;
+    font-size: .6rem;
+    margin: 0 2rem;
   }
 
 }

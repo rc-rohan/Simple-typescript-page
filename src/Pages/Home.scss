@@ -24,7 +24,7 @@
       // max-width: 42rem;
     }
 
-    &__text-body{
+    &-body{
       margin-top: 1rem;
     }
   }
@@ -43,11 +43,11 @@
     &__radio-btn-group{
       margin-top: 1rem;
 
-      &__description {
-          display: flex;
-          flex-direction: column;
-        }
     }
+    &__radio-btn-description {
+        display: flex;
+        flex-direction: column;
+      }
 
     &__submit-btn{
       padding: 0 8rem;

@@ -16,35 +16,37 @@ import "./Home.scss";
 import userData from "../Data/userData";
 import Footer from "../Components/Footer";
 
-const NAVIGATION_PANNEL_STATICS = {
-  SELECTED_PANNEL:"opt1"
-}
+const HOME_STATICS = {
+  NAVIGATION_PANNEL: {
+    SELECTED_PANNEL: "opt1",
+  },
 
-const EDIT_BUTTON_STATICS = {
-  ICON_NAME: "fa-regular fa-pen-to-square",
-  BUTTON_TEXT: "Edit Dependents",
-};
+  EDIT_CTA: {
+    ICON_NAME: "fa-regular fa-pen-to-square",
+    CTA_TEXT: "Edit Dependents",
+  },
 
-const DEPENDENT_DETAILS_STATICS = {
-  ICON_NAME:"fa-solid fa-arrow-right",
-  RADIO_GROUP_ID: "DefaultRadioGroup",
+  DEPENDENT_DETAILS: {
+    ICON_NAME: "fa-solid fa-arrow-right",
+    RADIO_GROUP_ID: "DefaultRadioGroup",
+    SUBMIT_CTA_TEXT: "Save and Continue",
+  },
 };
 
 const styles = {
-  container:"home__container",
+  container: "home__container",
   navigationPannel: "home__navigation-pannel",
   header: {
-    container:"home__header-container",
-    header: "home__header",
+    container: "home__header-container",
     headerDetails: "home__header-details",
-    body: "home__header__text-body",
+    body: "home__header-body",
   },
 
   dependentDetails: {
-    container:"home__dependent-details-container",
+    container: "home__dependent-details-container",
     header: "home__dependent-details__header",
     radioBtnGroup: "home__dependent-details__radio-btn-group",
-    radioBtnDescription: "home__dependent-details__radio-btn-group__description",
+    radioBtnDescription: "home__dependent-details__radio-btn-description",
     submitBtn: "home__dependent-details__submit-btn",
   },
 };
@@ -62,7 +64,7 @@ const Home = () => {
         className={styles.navigationPannel}
         navList={userData.navigationList}
         // onClickHandler={function noRefCheck() {}}
-        selectedId={NAVIGATION_PANNEL_STATICS.SELECTED_PANNEL}//by default this will come from useState()/props;
+        selectedId={HOME_STATICS.NAVIGATION_PANNEL.SELECTED_PANNEL} //by default this will come from useState()/props;
       />
     );
   };
@@ -71,23 +73,28 @@ const Home = () => {
     return (
       <div className={styles.header.container}>
         <div className={styles.header.headerDetails}>
-          <TextHeader size={SIZE.XL}>{userData.dependentsDescription.header}</TextHeader>
+          <TextHeader size={SIZE.XL}>
+            {userData.dependentsDescription.header}
+          </TextHeader>
           <TextBody className={styles.header.body}>
             {userData.dependentsDescription.text}
           </TextBody>
         </div>
         <Button
           iconLocation={ALIGN.LEFT}
-          iconName={EDIT_BUTTON_STATICS.ICON_NAME}
+          iconName={HOME_STATICS.EDIT_CTA.ICON_NAME}
           type={BUTTON_TYPE.SECONDARY}
         >
-          {EDIT_BUTTON_STATICS.BUTTON_TEXT}
+          {HOME_STATICS.EDIT_CTA.CTA_TEXT}
         </Button>
       </div>
     );
   };
 
-  const getUsers = (user: { id: Key; firstName: string; lastName: string },key:Number) => {
+  const getUsers = (
+    user: { id: Key; firstName: string; lastName: string },
+    key: Number
+  ) => {
     return (
       <div key={user.id}>
         <TextHeader className={styles.dependentDetails.header} size={SIZE.M}>
@@ -95,7 +102,7 @@ const Home = () => {
         </TextHeader>
         <div>
           <RadioGroup
-            id={DEPENDENT_DETAILS_STATICS.RADIO_GROUP_ID}
+            id={HOME_STATICS.DEPENDENT_DETAILS.RADIO_GROUP_ID}
             className={styles.dependentDetails.radioBtnGroup}
             // onChange={function noRefCheck() {}}
           >
@@ -149,10 +156,10 @@ const Home = () => {
         {userData.userList.map(getUsers)}
         <Button
           disabled
-          iconName={DEPENDENT_DETAILS_STATICS.ICON_NAME}
+          iconName={HOME_STATICS.DEPENDENT_DETAILS.ICON_NAME}
           className={styles.dependentDetails.submitBtn}
         >
-          Save and Continue
+          {HOME_STATICS.DEPENDENT_DETAILS.SUBMIT_CTA_TEXT}
         </Button>
       </div>
     );

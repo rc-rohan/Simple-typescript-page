@@ -11,7 +11,7 @@ const styles = {
     container: "footer__navigation-links-container",
     anchorBtn: "footer__navigation-links__anchor-btn",
   },
-  anchorSeperator: "footer__navigation-links__anchor-btn--seperator",
+  anchorBtnSeperator: "footer__anchor-btn--seperator",
 };
 
 const Footer = () => {
@@ -28,7 +28,7 @@ const Footer = () => {
       >
         {linkItemData.displayText}
       </AnchorButton>
-      <span className={styles.anchorSeperator}> &#x25CF;</span>
+      <span className={styles.anchorBtnSeperator}> &#x25CF;</span>
     </div>
   );
 
