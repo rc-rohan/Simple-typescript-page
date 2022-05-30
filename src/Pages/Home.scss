@@ -1,0 +1,53 @@
+@import "~@evive/ui-kit/src/statics/styles/main";
+
+.home{
+      background-color: $background-surface-default;
+
+
+  &__navigation-lists{
+    margin-top: 10rem;
+  }
+
+  &__header{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+
+    &-details{
+      flex: 1;
+      max-width: 42rem;
+    }
+    
+    &__text-body{
+      margin-top: 1rem;
+    }
+  }
+
+  &__dependent-details{
+
+    // border: 2px solid red;
+    margin-top: 1rem;
+
+    &__header{
+      margin-top: 2rem;
+    }
+
+    &__radio-btn-group{
+      margin-top: 1rem;
+
+      &__description {
+          display: flex;
+          flex-direction: column;
+        }
+    }
+
+    &__submit-btn{
+      padding: 0 8rem;
+      margin-left: 70rem;
+      margin-top: 7rem;
+    }
+
+  }
+
+
+}
